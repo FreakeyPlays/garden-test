@@ -5,6 +5,7 @@
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include "../Events.h"
 
 class Comm {
   public:
@@ -13,7 +14,7 @@ class Comm {
     void init(unsigned long baudRate = 9600);
 
     void send(const char* msg);
-    void sendEvent(const char* event, const char* initiator);
+    void sendEvent(Event event, EventInitiator initiator);
     void sendData(JsonDocument doc);
 
   private:

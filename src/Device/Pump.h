@@ -15,9 +15,9 @@ class Pump : public Device {
 
     void init() override;
     void update() override;
-    void on(const char* initiator) override;
-    void off(const char* initiator) override;
-    void toggle(const char* initiator) override;
+    void on(EventInitiator initiator = EventInitiator::AUTO) override;
+    void off(EventInitiator initiator = EventInitiator::AUTO) override;
+    void toggle(EventInitiator initiator = EventInitiator::AUTO) override;
     JsonDocument getJsonData() const override;
 
     void emergencyStop();

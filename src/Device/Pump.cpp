@@ -14,7 +14,7 @@ void Pump::init() {
   statusLed.init();
 }
 
-void Pump::on(const char* initiator = EventInitiator::AUTO) {
+void Pump::on(EventInitiator initiator) {
   if (isActive) {
     COMM.send("Pump is already Off");
     return;
@@ -32,7 +32,7 @@ void Pump::on(const char* initiator = EventInitiator::AUTO) {
   COMM.sendEvent(Event::PUMP_ON, initiator);
 }
 
-void Pump::off(const char* initiator = EventInitiator::AUTO) {
+void Pump::off(EventInitiator initiator) {
   if (!isActive) {
     COMM.send("Pump is already Off");
     return;
@@ -61,7 +61,7 @@ void Pump::emergencyStop() {
   }
 }
 
-void Pump::toggle(const char* initiator = EventInitiator::AUTO) {
+void Pump::toggle(EventInitiator initiator) {
   if (isActive) {
     off(initiator);
   } else {
