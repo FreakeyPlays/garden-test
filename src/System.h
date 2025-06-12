@@ -8,6 +8,7 @@
 #include "Utils/Button.h"
 #include "Utils/Led.h"
 #include "Plant.h"
+#include "Events.h"
 
 const int MODE_TOGGLE_PIN = 3;
 const int UNLOCK_BUTTON_PIN = 6;
@@ -21,12 +22,12 @@ public:
     void init();
     void update();
 
-    void lockDevice(const char* initiator);
+    void lockDevice(EventInitiator initiator = EventInitiator::AUTO);
     void unlockDevice();
 
-    void setAutoMode(const char* initiator);
-    void setManualMode(const char* initiator);
-    void toggleMode(const char* initiator);
+    void setAutoMode(EventInitiator initiator = EventInitiator::AUTO);
+    void setManualMode(EventInitiator initiator = EventInitiator::AUTO);
+    void toggleMode(EventInitiator initiator = EventInitiator::AUTO);
 
     void executeCommand(const JsonDocument& doc);
 

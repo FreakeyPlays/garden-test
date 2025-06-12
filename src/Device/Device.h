@@ -4,6 +4,7 @@
 #include <ArduinoJson.h>
 #include "../Utils/Button.h"
 #include "../Utils/Led.h"
+#include "../Events.h"
 
 class Device {
   protected:
@@ -16,9 +17,9 @@ class Device {
       : manualToggle(manualTogglePin), statusLed(statusLedPin) {}
     virtual void init() = 0;
     virtual void update() = 0;
-    virtual void on(const char* initiator) = 0;
-    virtual void off(const char* initiator) = 0;
-    virtual void toggle(const char* initiator) = 0;
+    virtual void on(EventInitiator initiator) = 0;
+    virtual void off(EventInitiator initiator) = 0;
+    virtual void toggle(EventInitiator initiator) = 0;
     virtual JsonDocument getJsonData() const = 0;
 
     bool getIsActive() const {

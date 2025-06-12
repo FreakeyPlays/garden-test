@@ -76,9 +76,9 @@ void Plant::addDevice(Device* device) {
 void Plant::executeCommand(const JsonDocument& doc) {
     const char* command = doc["command"];
 
-    if(strcmp(command, Event::PUMP_ON) == 0) {
+    if(strcmp(command, toString(Event::PUMP_ON)) == 0) {
         devices[0]->on(EventInitiator::REMOTE);
-    } else if (strcmp(command, Event::PUMP_OFF) == 0) {
+    } else if (strcmp(command, toString(Event::PUMP_OFF)) == 0) {
         devices[0]->off(EventInitiator::REMOTE);
     } else {
         COMM.send("Unknown Plant command!");

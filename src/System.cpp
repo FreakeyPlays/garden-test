@@ -27,7 +27,7 @@ void System::update() {
     }
 }
 
-void System::lockDevice(const char* initiator = EventInitiator::AUTO) {
+void System::lockDevice(EventInitiator initiator) {
     if (!locked) {
         locked = true;
         systemLockedLed.on();
@@ -49,7 +49,7 @@ void System::unlockDevice() {
     COMM.send("Device is Already unlocked.");
 }
 
-void System::setAutoMode(const char* initiator = EventInitiator::AUTO) {
+void System::setAutoMode(EventInitiator initiator) {
     if (manualMode) {
         manualMode = false;
         modeLed.off();
@@ -60,7 +60,7 @@ void System::setAutoMode(const char* initiator = EventInitiator::AUTO) {
     COMM.send("Auto mode is already active.");
 }
 
-void System::setManualMode(const char* initiator = EventInitiator::AUTO) {
+void System::setManualMode(EventInitiator initiator) {
     if (!manualMode) {
         manualMode = true;
         modeLed.on();
@@ -71,7 +71,7 @@ void System::setManualMode(const char* initiator = EventInitiator::AUTO) {
     COMM.send("Manual mode is already active.");
 }
 
-void System::toggleMode(const char* initiator = EventInitiator::AUTO) {
+void System::toggleMode(EventInitiator initiator) {
     if(manualMode) {
         setAutoMode(initiator);
     } else {

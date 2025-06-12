@@ -19,12 +19,12 @@ void Comm::send(const char* msg) {
     Serial.println();
 }
 
-void Comm::sendEvent(const char* event, const char* initiator) {
+void Comm::sendEvent(Event event, EventInitiator initiator) {
     JsonDocument doc;
     doc["type"] = "event";
-    doc["eventId"] = event;
-    doc["message"] = Event::getMessage(event);
-    doc["initiator"] = initiator;
+    doc["eventId"] = toString(event);
+    doc["message"] = getMessage(event);
+    doc["initiator"] = toString(initiator);
     doc["timestamp"] = millis();
     serializeJson(doc, Serial);
     Serial.println();
